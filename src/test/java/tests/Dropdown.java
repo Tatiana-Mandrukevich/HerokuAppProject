@@ -2,8 +2,8 @@ package tests;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -18,29 +18,22 @@ public class Dropdown {
     //5. Select the second element
     //6. Check that the second element is selected
 
-    public void dropdownTest() {
+    public void selectDropdownOptions() {
         System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver");
         WebDriver driver = new ChromeDriver();
         driver.get("http://the-internet.herokuapp.com/dropdown");
 
-        List<WebElement> listDropdownElements = driver.findElements(By.id("dropdown"));
+        Select dropdown = new Select(driver.findElement(By.id("dropdown")));
+        Assert.assertFalse(dropdown.getOptions().isEmpty(), "Dropdown is empty!");
 
-        boolean expectedResult = false;
-        boolean actualResult = listDropdownElements.isEmpty();
-        Assert.assertEquals(actualResult, expectedResult);
-
-        driver.findElement(By.id("dropdown")).click();
-        driver.findElement(By.xpath("//*[@value=\"1\"]")).click();
-
+        dropdown.selectByValue("1");
         String expectedResult2 = "Option 1";
-        String actualResult2 = driver.findElement(By.xpath("//*[@value=\"1\"]")).getText();
+        String actualResult2 = dropdown.getFirstSelectedOption().getText();
         Assert.assertEquals(actualResult2, expectedResult2);
 
-        driver.findElement(By.id("dropdown")).click();
-        driver.findElement(By.xpath("//*[@value=\"2\"]")).click();
-
+        dropdown.selectByValue("2");
         String expectedResult3 = "Option 2";
-        String actualResult3 = driver.findElement(By.xpath("//*[@value=\"2\"]")).getText();
+        String actualResult3 = dropdown.getFirstSelectedOption().getText();
         Assert.assertEquals(actualResult3, expectedResult3);
 
         driver.quit();

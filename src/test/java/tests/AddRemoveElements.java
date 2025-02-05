@@ -16,7 +16,7 @@ public class AddRemoveElements {
     //4. Check number of elements Delete
 
     @Test
-    public void addRemoveElementsTest() {
+    public void checkDeleteButtonsCount() {
         System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver");
         WebDriver driver = new ChromeDriver();
         driver.get("http://the-internet.herokuapp.com/add_remove_elements/");
@@ -28,9 +28,7 @@ public class AddRemoveElements {
         List<WebElement> listButtonDelete = driver.findElements(By.xpath("//*[@onclick=\"deleteElement()\"]"));
         int numberOfElementsDelete = listButtonDelete.size();
 
-        Integer expectedResult = 1;
-        Integer actualResult = numberOfElementsDelete;
-        Assert.assertEquals(actualResult, expectedResult);
+        Assert.assertEquals(numberOfElementsDelete, 1);
 
         driver.quit();
     }

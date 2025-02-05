@@ -11,7 +11,7 @@ public class Typos {
     //1. Open browser, site http://the-internet.herokuapp.com/typos
     //2. Check paragraph for spelling
 
-    public void typosTest() {
+    public void checkSpelling() {
         System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver");
         WebDriver driver = new ChromeDriver();
         driver.get("http://the-internet.herokuapp.com/typos");
@@ -21,7 +21,7 @@ public class Typos {
         Assert.assertEquals(actualResult, expectedResult);
 
         String expectedResult2 = "Sometimes you'll see a typo, other times you won't.";
-        String actualResult2 = driver.findElement(By.xpath("//*/p[2]")).getText();
+        String actualResult2 = driver.findElement(By.xpath("//p[2]")).getText();
         Assert.assertEquals(actualResult2, expectedResult2);
 
         driver.quit();

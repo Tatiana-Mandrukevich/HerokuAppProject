@@ -17,7 +17,7 @@ public class Checkboxes {
     //6. Uncheck the second checkbox
     //7. Check that the second checkbox is unchecked
 
-    public void firstCheckboxTest() {
+    public void firstCheckboxChecked() {
         System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver");
         WebDriver driver = new ChromeDriver();
         driver.get("http://the-internet.herokuapp.com/checkboxes");
@@ -37,7 +37,7 @@ public class Checkboxes {
         driver.quit();
     }
 
-    public void secondCheckboxTest() {
+    public void secondCheckboxUnchecked() {
         System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver");
         WebDriver driver = new ChromeDriver();
         driver.get("http://the-internet.herokuapp.com/checkboxes");

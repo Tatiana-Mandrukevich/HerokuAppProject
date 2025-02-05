@@ -17,12 +17,11 @@ public class Hovers {
     //5. Check that there is no 404 error (в чате решили, что можно заменить на Assert.assertEquals(driver.getCurrentUrl(), expectedUrl);)
     //6. Repeat for each profile
 
-    public void hoversTest() {
+    public void checkFirstProfile() {
         System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver");
         WebDriver driver = new ChromeDriver();
         driver.get("http://the-internet.herokuapp.com/hovers");
 
-        //first profile:
         WebElement profile1 = driver.findElement(By.xpath("//*[@alt=\"User Avatar\"]"));
         Actions actions1 = new Actions(driver).moveToElement(profile1);
         actions1.perform();
@@ -36,12 +35,16 @@ public class Hovers {
         String expectedUrl1 = "https://the-internet.herokuapp.com/users/1";
         String actualUrl1 = driver.getCurrentUrl();
         Assert.assertEquals(actualUrl1, expectedUrl1);
-//        System.out.println("Текущий URL профиля 1: " + driver.getCurrentUrl());
 
         driver.navigate().back();
-//        System.out.println("Текущий URL после возврата: " + driver.getCurrentUrl());
+        driver.quit();
+    }
 
-        //second profile:
+    public void checkSecondProfile() {
+        System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver");
+        WebDriver driver = new ChromeDriver();
+        driver.get("http://the-internet.herokuapp.com/hovers");
+
         WebElement profile2 = driver.findElement(By.xpath("(//*[@alt=\"User Avatar\"])[2]"));
         Actions actions2 = new Actions(driver).moveToElement(profile2);
         actions2.perform();
@@ -55,12 +58,16 @@ public class Hovers {
         String expectedUrl2 = "https://the-internet.herokuapp.com/users/2";
         String actualUrl2 = driver.getCurrentUrl();
         Assert.assertEquals(actualUrl2, expectedUrl2);
-//        System.out.println("Текущий URL профиля 2: " + driver.getCurrentUrl());
 
         driver.navigate().back();
-//        System.out.println("Текущий URL после 2 возврата: " + driver.getCurrentUrl());
+        driver.quit();
+    }
 
-        //third profile
+    public void checkThirdProfile() {
+        System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver");
+        WebDriver driver = new ChromeDriver();
+        driver.get("http://the-internet.herokuapp.com/hovers");
+
         WebElement profile3 = driver.findElement(By.xpath("(//*[@alt=\"User Avatar\"])[3]"));
         Actions actions3 = new Actions(driver).moveToElement(profile3);
         actions3.perform();
@@ -74,11 +81,8 @@ public class Hovers {
         String expectedUrl3 = "https://the-internet.herokuapp.com/users/3";
         String actualUrl3 = driver.getCurrentUrl();
         Assert.assertEquals(actualUrl3, expectedUrl3);
-//        System.out.println("Текущий URL профиля 3: " + driver.getCurrentUrl());
 
         driver.navigate().back();
-//        System.out.println("Текущий URL после 3 возврата: " + driver.getCurrentUrl());
-
         driver.quit();
     }
 }
